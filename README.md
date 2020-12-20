@@ -35,7 +35,7 @@ Nota : à la date de rédaction de cette procédure il existe un installeur de Q
 # Compiler un projet en précisant la version de Qt
 Partons d'un exemple : QPXSee 7.31 nécessite Qt5 (5.10.1 pour toutes les fonctionnalités, or sous mon Ubuntu Xenial 16.04 la version installé était Qt4 et impossible d'installer la version Qt5 (je ne sais pas vraiment pourquoi). De plus, il n'existe pas de version opérationnelle juste à décompresser, mais uniquement un paquet DEB (dpkg -i DEB) qui indique des problèmes de dépendances non résolues (et que je ne parviens pas à résoudre). Donc ma seule solution c'est de compiler.
 
-Avertissement : cette procédure n'est certainement pas la meilleure, ni celle recommandée, mais comme c'est la seule que j'ai trouvé, je la conserve.
+Avertissement : cette procédure n'est certainement pas la meilleure, ni celle recommandée, mais comme c'est la seule qui fonctionne pour moi, je la conserve.
 
 Voici ce que j'ai fait pour permettre la compilation (basé sur [ceci](https://unix.stackexchange.com/questions/116254/how-do-i-change-which-version-of-qt-is-used-for-qmake/427366#427366)):
 1. Renommer la version par défaut : 
