@@ -31,4 +31,4 @@ Source des téléchargements : https://www.qt.io/offline-installers
 2. Rendre l'installeur exécutable : chmod +x qt-opensource-linux-x64-5.9.1.run
 3. Exécuter l'installeur (nécessite un compte Qt, qu'on pourra créer au besoin) par la commande "./qt-opensource-linux-x64-5.9.1.run" et installer dans /data/noinstall
 
-Nota : à la date de rédaction de cette procédure il existe un installeur plus récent "qt-opensource-linux-x64-5.12.10.run" mais il provoque une erreur qui semble minime que qt-opensource-linux-x64-5.9.1.run ne produit pas
+Nota : à la date de rédaction de cette procédure il existe un installeur de Qt5 plus récent "qt-opensource-linux-x64-5.12.10.run" mais il provoque une erreur qui semble minime et qui n'est pas produit par qt-opensource-linux-x64-5.9.1.run
