@@ -53,6 +53,18 @@ user@host:~$ /data/noinstall/Qt5.12.10/5.12.10/gcc_64/bin/lrelease gpxsee.pro
 user@host:~$ /data/noinstall/Qt5.12.10/5.12.10/gcc_64/bin/qmake gpxsee.pro
 user@host:~$ make
 ```
+Nota : l'application est bien compilée, mais à l'exécution j'ai des erreurs et les cartes ne sont pas ajoutées (entre autres)
+```ssh
+user@host:/data/noinstall/GPXSee-7.31$ LD_LIBRARY_PATH=/data/noinstall/Qt5.12.10/5.12.10/gcc_64/lib ./gpxsee 
+No ellipsoids file found.
+No GCS file found.
+Maps based on a datum different from WGS84 won't work.
+No PCS file found.
+qt.network.ssl: QSslSocket: cannot resolve OPENSSL_init_ssl
+...
+qt.network.ssl: Incompatible version of OpenSSL
+```
+DONC : semi-réussite/echec (50/50)
 
 # Installer manuellement un Framework Qt pour faire cohabiter plusieurs versions de Qt
 Source des téléchargements : https://www.qt.io/offline-installers
