@@ -9,14 +9,19 @@ Partons d'un exemple : Beebeep 5.8.2 nécessite Qt5, or sous mon Ubuntu Xenial 1
 
 Solution : 
 1. installer Qt5 dans /data/noinstall (voir procédure pour installer manuellement un framework)
-2. préciser à l'exécution quelle version utiliser avec la variable d'environnement LD_LIBRARY ([détails ici]() : 
+2. préciser à l'exécution quelle version utiliser avec la variable d'environnement LD_LIBRARY ([détails ici](https://forum.qt.io/topic/55100/linux-run-program-if-install-two-version-qt/3) et [ici](http://www.linuxcertif.com/doc/keyword/LD_LIBRARY_PATH/)): 
 
 ```sh
 LD_LIBRARY_PATH=/data/noinstall/Qt5.9.1/5.9.1/gcc_64/lib beebeep &
 ```
-Nota : depuis un lanceur Desktop on ne peut utiliser la ligne telle quelle ("Valider" est grisé)
+Nota : depuis un lanceur Desktop on ne peut utiliser la ligne telle quelle ("Valider" est grisé), il faut [précéder par env](https://askubuntu.com/questions/144968/set-variable-in-desktop-file/144971#144971) pour définir l'environnement
 
-exec=env LD_LIBRARY_PATH=/data/noinstall/Qt5.9.1/5.9.1/gcc_64/lib /usr/bin/beebeep
+```sh
+cat /usr/share/applications/beebeep.desktop
+...
+Exec=env LD_LIBRARY_PATH=/data/noinstall/Qt5.9.1/5.9.1/gcc_64/lib /usr/bin/beebeep
+...
+```
 
 # Installer manuellement un Framework Qt pour faire cohabiter plusieurs versions de Qt
 
