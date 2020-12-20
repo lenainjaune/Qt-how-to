@@ -5,7 +5,7 @@ Rassemble toutes mes connaissances autour de Qt
 En gros, gratuit si on ne produit pas de projets qui nous rapporte de l'argent (=> colle parfaitement à l'Open Source), sinon payant
 
 # Exécuter application avec un autre Framwork Qt
-Partons d'un exemple : Beebeep 5.8.2 nécessite Qt5, or sous mon Ubuntu Xenial 16.04 la version installé était Qt4 et impossible d'installer la version qt5 (je ne sais pas vraiment pourquoi)
+Partons d'un exemple : Beebeep 5.8.2 nécessite Qt5, or sous mon Ubuntu Xenial 16.04 la version installé était Qt4 et impossible d'installer la version Qt5 (je ne sais pas vraiment pourquoi)
 
 Solution : 
 1. installer Qt5 dans /data/noinstall (voir procédure pour installer manuellement un framework)
@@ -24,7 +24,6 @@ Exec=env LD_LIBRARY_PATH=/data/noinstall/Qt5.9.1/5.9.1/gcc_64/lib /usr/bin/beebe
 ```
 
 # Installer manuellement un Framework Qt pour faire cohabiter plusieurs versions de Qt
-
 Source des téléchargements : https://www.qt.io/offline-installers
 
 1. Télécharger l'installeur voulu (ici qt-opensource-linux-x64-5.9.1.run)
@@ -32,3 +31,31 @@ Source des téléchargements : https://www.qt.io/offline-installers
 3. Exécuter l'installeur (nécessite un compte Qt, qu'on pourra créer au besoin) par la commande "./qt-opensource-linux-x64-5.9.1.run" et installer dans /data/noinstall
 
 Nota : à la date de rédaction de cette procédure il existe un installeur de Qt5 plus récent "qt-opensource-linux-x64-5.12.10.run" mais il provoque une erreur qui semble minime et qui n'est pas produit par qt-opensource-linux-x64-5.9.1.run
+
+# Compiler un projet en précisant la version de Qt
+Partons d'un exemple : QPXSee 7.31 nécessite Qt5 (5.10.1 pour toutes les fonctionnalités, or sous mon Ubuntu Xenial 16.04 la version installé était Qt4 et impossible d'installer la version Qt5 (je ne sais pas vraiment pourquoi). De plus, il n'existe pas de version opérationnelle juste à décompresser, mais uniquement un paquet DEB (dpkg -i DEB) qui indique des problèmes de dépendances non résolues (et que je ne parviens pas à résoudre). Donc ma seule solution c'est de compiler.
+
+Avertissement : cette procédure n'est certainement pas la meilleure, ni celle recommandée, mais comme c'est la seule que j'ai trouvé, je la conserve.
+
+Voici ce que j'ai fait pour permettre la compilation (basé sur [ceci](https://unix.stackexchange.com/questions/116254/how-do-i-change-which-version-of-qt-is-used-for-qmake/427366#427366)):
+1. Renommer la version par défaut : 
+```sh
+root@host:~# mv /usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf /usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf_orig
+```
+2. Créer sa version par défaut : 
+```sh
+root@host:~# cat /usr/share/qtchooser/my_Qt5.12.10_Desktop_gcc_x64.conf
+/data/noinstall/Qt5.12.10/5.12.10/gcc_64/bin
+/data/noinstall/Qt5.12.10/5.12.10/gcc_64/lib
+```
+3. Rendre sa version comme étant celle par défaut
+```sh
+root@host:~# ln -s /usr/share/qtchooser/my_Qt5.12.10_Desktop_gcc_x64.conf /usr/lib/x86_64-linux-gnu/qt-default/default.conf
+```
+
+Pour compiler à partir du framework voulu (basé sur [procédure officielle](https://github.com/tumic0/GPXSee)) :
+```sh
+user@host:~$ /data/noinstall/Qt5.12.10/5.12.10/gcc_64/bin/lrelease gpxsee.pro
+user@host:~$ /data/noinstall/Qt5.12.10/5.12.10/gcc_64/bin/qmake gpxsee.pro
+user@host:~$ make
+```
