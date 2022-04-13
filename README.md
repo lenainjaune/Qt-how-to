@@ -75,17 +75,14 @@ Source des téléchargements : https://www.qt.io/offline-installers
 
 # Installer trebleshot Bullseye
 Source : https://github.com/trebleshot/desktop
+Permet depuis le LAN de transférer des fichiers entre un smartphone et un autre hôte.
 
 ```sh
 mkdir -p /data/noinstall
 cd /data/noinstall
 apt update
-apt install -y vim htop locate less aptitude wget gawk man sshfs rsync tree curl net-tools gnupg2 rfkill util-linux nmap tcpdump binutils git
-apt install -y build-essential
-# prérequis
-apt install cmake
-apt install qtbase5-dev
-apt install libkf5dnssd-dev
+apt install -y vim htop locate less aptitude wget gawk man sshfs rsync tree curl net-tools gnupg2 rfkill util-linux nmap tcpdump binutils git build-essential
+apt install -y cmake qtbase5-dev libkf5dnssd-dev
 git clone https://github.com/trebleshot/desktop.git
 mv desktop trebleshot
 cd trebleshot/
