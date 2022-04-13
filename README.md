@@ -72,3 +72,30 @@ Source des téléchargements : https://www.qt.io/offline-installers
 1. Télécharger l'installeur voulu (ici qt-opensource-linux-x64-5.9.1.run)
 2. Rendre l'installeur exécutable : chmod +x qt-opensource-linux-x64-5.9.1.run
 3. Exécuter l'installeur (nécessite un compte Qt, qu'on pourra créer au besoin) par la commande "./qt-opensource-linux-x64-5.9.1.run" et installer dans /data/noinstall
+
+# Installer trebleshot Bullseye
+Source : https://github.com/trebleshot/desktop
+
+```sh
+mkdir -p /data/noinstall
+cd /data/noinstall
+apt update
+apt install -y vim htop locate less aptitude wget gawk man sshfs rsync tree curl net-tools gnupg2 rfkill util-linux nmap tcpdump binutils git
+apt install -y build-essential
+# prérequis
+apt install cmake
+apt install qtbase5-dev
+apt install libkf5dnssd-dev
+git clone https://github.com/trebleshot/desktop.git
+mv desktop trebleshot
+cd trebleshot/
+git submodule update --init
+./build_trebleshot.sh
+file cmake-build-release/trebleshot
+chown -R USER: /data
+```
+Dépuis session utilisateur USER :
+```sh
+/data/noinstall/trebleshot/cmake-build-release/trebleshot
+```
+
